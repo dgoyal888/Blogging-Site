@@ -1,0 +1,28 @@
+<% include ../partials/header %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="thumbnail">
+                <h4><strong><h4><%= blog.name %></strong></h4>
+                <strong class="pull-center"><h4><%= blog.title%></h4></strong>
+                <p>
+                    <%-  blog.body %>
+                </p>
+                <span><%= blog.created.toDateString() %></span>
+                <% blog.comments.forEach(function(comment){ %>
+                <p>
+                    <strong> <%= comment.author %></strong> -<%= comment.text%>
+                </p>
+                <% })%>
+                <p>
+                    <a style=" display: inside"class="btn btn-success" href="/blogs/<%= blog._id%>/comments/new">ADD COMMENT</a>
+                </p>
+                <a style=" display: inline" href="/blogs/<%= blog._id %>/edit" class="btn btn-info">EDIT BLOG</a>
+                <form style="display: inline" method="POST" action="/blogs/<%=blog._id%>?_method=DELETE">
+                    <button style=" display: inline" type="submit" class="btn btn-danger">Delete Blog</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<% include ../partials/footer %>
